@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminSystem", "AdminSystem\", "{157421EE-9D45-44EB-9290-6574686CB7FC}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		ProjectReferences = "{e32146cf-ec09-4709-9881-42adf1b0735b}|ClassLibrary.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50298"
 		Debug.AspNetCompiler.PhysicalPath = "AdminSystem\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50298\"
@@ -33,6 +34,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingStaff", "Testing2\TestingStaff.csproj", "{53F17854-E215-4FE3-9860-C1E18BF9C6C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingAppointment", "Testing1\TestingAppointment.csproj", "{4186B3B3-EBEA-434E-844F-F79D774C252B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41D0DE94-2636-486F-923D-68B48A236709}"
+	ProjectSection(SolutionItems) = preProject
+		Application.css = Application.css
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
