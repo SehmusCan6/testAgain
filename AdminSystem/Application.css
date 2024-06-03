@@ -194,3 +194,33 @@ a {
 .findButton:hover {
     background-color: grey;
 }
+
+.submitAppButton {
+    border-radius: 6px;
+    border: 1px black solid;
+    background-color: forestgreen;
+    color: white;
+}
+
+.cancelAppbutton {
+    border-radius: 6px;
+    border: 1px black solid;
+}
+
+.listApplication {
+    border-radius: 10px;
+    background-color: darkgray;
+}
+
+.listBackButton {
+    border-radius: 6px;
+    background-color: dimgrey;
+    margin-right: 18px;
+}
+
+.listAddButton {
+    border-radius: 6px;
+    background-color:darkgreen;
+    color: white;
+    margin-right: 18px;
+}

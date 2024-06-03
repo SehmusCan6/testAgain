@@ -177,10 +177,13 @@
                         style="width: 293px; height: 39px;" />&nbsp;
                     <br />
                     <br />
+                    <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+                    <br />
+                    <br />
                     <asp:Button ID="FindButton" runat="server" UseSubmitBehavior="false" Text="Find" Width="80px" OnClick="FindButton_Click" BackColor="#F9F9F9" BorderColor="#5C5D5C" BorderStyle="Solid" ForeColor="#5C5D5C" Height="43px" Style="margin-bottom: 12px; margin-top: 12px;" CssClass="findButton" />
 
                     <br />
-                    <asp:Button ID="SubmitButtonId" runat="server" UseSubmitBehavior="true" Text="Submit aplication" Width="254px" OnClick="SubmitButtonId_Click" BackColor="#009933" BorderColor="#009933" BorderStyle="Solid" CssClass="applyButton" Font-Bold="True" Height="43px" Font-Italic="False" ForeColor="White" />
+                    <asp:Button ID="SubmitButtonId" runat="server" UseSubmitBehavior="true" Text="Submit aplication" Width="254px" OnClick="SubmitButtonId_Click" BackColor="#009933" BorderColor="#009933" BorderStyle="Solid" CssClass="submitAppButton" Font-Bold="True" Height="43px" Font-Italic="False" ForeColor="White" />
                     <asp:Button ID="CancelButtonId" runat="server" UseSubmitBehavior="false" Text="Cancel" Width="154px" OnClick="CancelButtonId_Click" BackColor="#F9F9F9" BorderColor="#009933" BorderStyle="Solid" ForeColor="#009933" Height="43px" Style="margin-left: 28px" />
 
                     <br />

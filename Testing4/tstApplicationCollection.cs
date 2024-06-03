@@ -67,5 +67,23 @@ namespace Testing4
             Assert.AreEqual(AllApp.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsApplicationCollection apps = new clsApplicationCollection();
+            clsApplication TestItem = new clsApplication();
+            Int32 PrimaryKey = 0;
+            TestItem.ApplicantName = "TestAdd";
+            TestItem.ContactNumber = "TestAdd";
+            TestItem.EmailAddress = "TestAdd";
+            TestItem.PositionApplied = "TestAdd";
+            apps.ThisApplication = TestItem;
+            PrimaryKey = apps.Add();
+            TestItem.StaffId = PrimaryKey;
+            apps.ThisApplication.Find(PrimaryKey);
+            
+            Assert.AreEqual(apps.ThisApplication, TestItem);
+        }
+
     }
 }

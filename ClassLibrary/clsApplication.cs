@@ -114,7 +114,7 @@ namespace ClassLibrary
                 Error = Error + "Position cannot be longer than 15 characters : ";
             }
 
-            if (resume != null) 
+            if (!string.IsNullOrEmpty(resume))
             {
                 if (resume.Length <= 0) 
                 {

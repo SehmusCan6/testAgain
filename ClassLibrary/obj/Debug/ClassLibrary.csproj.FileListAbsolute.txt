@@ -10,3 +10,9 @@ H:\Downloads\projectJsQuadron\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.cspr
 H:\Downloads\projectJsQuadron\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
 H:\Downloads\projectJsQuadron\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.dll
 H:\Downloads\projectJsQuadron\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.pdb
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\bin\Debug\ClassLibrary.dll
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\bin\Debug\ClassLibrary.pdb
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.csproj.AssemblyReference.cache
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.dll
+H:\Downloads\projectCopy\JSquadron\ClassLibrary\obj\Debug\ClassLibrary.pdb

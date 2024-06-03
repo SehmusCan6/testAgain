@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsApplicationCollection
     {
         List<clsApplication> mApplicationList = new List<clsApplication>();
+        clsApplication mThisApplication = new clsApplication();
         public List<clsApplication> ApplicationList 
         {
             get
@@ -30,6 +31,17 @@ namespace ClassLibrary
             }
         }
         public clsApplication ThisApplication { get; set; }
+
+        public clsApplication ThisAddress {
+            get
+            {
+                return mThisApplication;
+            }
+            set
+            {
+                mThisApplication = value;
+            }
+        } 
 
         /*public clsApplicationCollection()
         {
@@ -57,13 +69,14 @@ namespace ClassLibrary
             Int32 Index = 0;
             Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
-            DB.Execute("dbp.jobApplication_selectAll");
+            DB.Execute("dbo.jobApplication_selectAll");
             RecordCount = DB.Count;
 
             while (Index < RecordCount)
             {
                 clsApplication AnApplication = new clsApplication();
                 AnApplication.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                AnApplication.AdminId = 1;
                 AnApplication.ApplicantName = Convert.ToString(DB.DataTable.Rows[Index]["ApplicantName"]);
                 AnApplication.ContactNumber = Convert.ToString(DB.DataTable.Rows[Index]["ContactNumber"]);
                 AnApplication.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
@@ -74,5 +87,24 @@ namespace ClassLibrary
             }
         }
 
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StaffId", mThisApplication.StaffId);
+            DB.AddParameter("@AdminId", 1);
+            DB.AddParameter("@ApplicantName", mThisApplication.ApplicantName);
+            DB.AddParameter("@ContactNumber", mThisApplication.ContactNumber);
+            DB.AddParameter("@EmailAddress", mThisApplication.EmailAddress);
+            DB.AddParameter("@PositionApplied", mThisApplication.PositionApplied);
+
+            if (mThisApplication.Resume != null)
+            {
+                DB.AddParameter("@Resume", mThisApplication.Resume);
+
+            }
+
+            return DB.Execute("dbo.jobApplication_create");
+        }
     }
 }
