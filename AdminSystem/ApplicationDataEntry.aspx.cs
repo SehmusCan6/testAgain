@@ -8,9 +8,18 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+
+    Int32 ApplicationId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ApplicationId = Convert.ToInt32(Session["ApplicationId"]);
+        if (IsPostBack == false)
+        {
+            if(ApplicationId != -1)
+            {
+                DisplayApp();
+            }
+        }
     }
     /*
     protected void SubmitButtonId_Click(object sender, EventArgs e)
@@ -55,6 +64,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         int staffId = 0;
         int.TryParse(Request.Form["txtStaffId"], out staffId);
+        int adminId = 0;
         string fullName = String.Format("{0}", Request.Form["txtFullName"]);
         string contactNumber = String.Format("{0}", Request.Form["txtPhone"]);
         string positionApplied = String.Format("{0}", Request.Form["txtPosition"]);
@@ -66,10 +76,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Error == "")
         {
-                if (staffId != 0)
-                {
-                    Application.StaffId = staffId;
-                }
+                Application.ApplicationId = ApplicationId;
+                Application.StaffId = staffId;
                 Application.AdminId = 1;
                 Application.ApplicantName = fullName;
                 Application.ContactNumber = contactNumber;
@@ -85,10 +93,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 }
 
                 clsApplicationCollection ApplicationList = new clsApplicationCollection();
-                ApplicationList.ThisApplication = Application;
-                ApplicationList.Add();
+                
+                if(ApplicationId == -1)
+                {
+                     ApplicationList.ThisApplication = Application;
+                     ApplicationList.Add();
+                }
+                else
+                {
+                    ApplicationList.ThisApplication.Find(ApplicationId);
+                    ApplicationList.ThisApplication = Application;
+                    ApplicationList.Update();
+                }
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Application submittion was successful!')", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Application submittion was successful!')", true);
                 Response.Redirect("ApplicationList.aspx");
         }
         else
@@ -97,6 +115,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
 
         
+    }
+
+    void DisplayApp()
+    {
+        clsApplicationCollection apps = new clsApplicationCollection();
+        apps.ThisApplication.Find(ApplicationId);
+        txtStaffId.Value = apps.ThisApplication.StaffId.ToString();
+        txtFullName.Value = apps.ThisApplication.ApplicantName.ToString();
+        txtPhone.Value = apps.ThisApplication.ContactNumber.ToString();
+        txtEmail.Value = apps.ThisApplication.EmailAddress;
+        txtResume.Value = apps.ThisApplication.Resume ?? string.Empty;
     }
 
     protected void CancelButtonId_Click(object sender, EventArgs e)

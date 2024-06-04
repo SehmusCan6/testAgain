@@ -45,7 +45,9 @@ namespace ClassLibrary
 
             if (DB.Count == 1)
             {
+                mApplictaionId = (int)DB.DataTable.Rows[0]["ApplicationId"];
                 mStaffId = StaffId;
+                mAdminId = 1;
                 mApplicantName = Convert.ToString(DB.DataTable.Rows[0]["ApplicantName"]);
                 mContactNumber = Convert.ToString(DB.DataTable.Rows[0]["ContactNumber"]);
                 mEmailAddress = Convert.ToString(DB.DataTable.Rows[0]["EmailAddress"]);

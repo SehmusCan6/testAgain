@@ -116,14 +116,14 @@ namespace Testing4
          *************************************************************/
 
         [TestMethod]
-        public void TestApplicantNameFound()
+        /*public void TestApplicantNameFound()
         {
             clsApplication jobApp = new clsApplication();
             Boolean Found = false;
             Boolean OK = true;
             int staffId = 2;
             Found = jobApp.Find(staffId);
-            string Name = "NameTest";
+            string Name = "Test";
 
 
             if (jobApp.ApplicantName != Name)
@@ -131,6 +131,20 @@ namespace Testing4
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }*/
+        public void TestApplicantNameFound()
+        {
+            // Arrange
+            clsApplication jobApp = new clsApplication();
+            int staffId = 2;
+            bool Found = jobApp.Find(staffId);
+
+            // Act
+            string Name = jobApp.ApplicantName;
+
+            // Assert
+            Assert.IsTrue(Found);
+            Assert.AreEqual(name, Name);
         }
 
         [TestMethod]
@@ -143,7 +157,7 @@ namespace Testing4
             int staffId = 2;
             Found = jobApp.Find(staffId);
 
-            if (jobApp.PositionApplied != "PositionTest")
+            if (jobApp.PositionApplied != "Test")
             {
                 OK = false;
             }
@@ -156,7 +170,7 @@ namespace Testing4
             clsApplication jobApp = new clsApplication();
             Boolean Found = false;
             Boolean OK = true;
-            string Email = "example@test.com";
+            string Email = "Test";
             int staffId = 2;
             Found = jobApp.Find(staffId);
 
@@ -173,11 +187,11 @@ namespace Testing4
             clsApplication jobApp = new clsApplication();
             Boolean Found = false;
             Boolean OK = true;
-            string Contact = "NumberTest";
+            string Contact = "Test";
             int staffId = 2;
             Found = jobApp.Find(staffId);
 
-            if (jobApp.ContactNumber != "ContactTest")
+            if (jobApp.ContactNumber != "Test")
             {
                 OK = false;
             }

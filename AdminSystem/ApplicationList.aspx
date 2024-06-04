@@ -65,11 +65,16 @@
                 <br />
                 <asp:Button ID="lstAddButton" runat="server" Text="Add" Width="90px" Height="32px" CssClass="listAddButton" OnClick="btnAdd_Click" />
 
+                <asp:Button ID="lstEditButton" runat="server" Height="32px" Width="90px" CssClass="listAddButton" OnClick="EditButton_Click" Text="Button" />
+
                 &nbsp;
 
                 <asp:Button ID="lstBackButton" runat="server" Height="32px" Text="Back" Width="90px" CssClass="listBackButton" OnClick="BackButton_Click" />
             </div>
         </main>
+
+        </div>
+        <asp:Label ID="lblErrorList" runat="server" Text="Label"></asp:Label>
 
     </form>
 </body>
