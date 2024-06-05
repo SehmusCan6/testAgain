@@ -52,49 +52,14 @@ namespace ClassLibrary
             }
         } 
 
-        /*public clsApplicationCollection()
-        {
-            clsApplication TestItem = new clsApplication();
-
-            TestItem.StaffId = 1;
-            TestItem.ApplicantName = "Test";
-            TestItem.EmailAddress = "Test";
-            TestItem.ContactNumber = "Test";
-            TestItem.PositionApplied = "Test";
-
-            mApplicationList.Add(TestItem);
-            TestItem = new clsApplication(); 
-
-            TestItem.StaffId = 1;
-            TestItem.ApplicantName= "Test";
-            TestItem.ContactNumber= "Test";
-            TestItem.EmailAddress= "Test";
-            TestItem.PositionApplied= "Test";
-            mApplicationList.Add(TestItem);
-        }*/
 
         public clsApplicationCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
+
             DB.Execute("dbo.jobApplication_selectAll");
-            RecordCount = DB.Count;
 
-            while (Index < RecordCount)
-            {
-                clsApplication AnApplication = new clsApplication();
-                AnApplication.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
-                AnApplication.AdminId = 1;
-                AnApplication.ApplicantName = Convert.ToString(DB.DataTable.Rows[Index]["ApplicantName"]);
-                AnApplication.ContactNumber = Convert.ToString(DB.DataTable.Rows[Index]["ContactNumber"]);
-                AnApplication.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
-                AnApplication.PositionApplied = Convert.ToString(DB.DataTable.Rows[Index]["PositionApplied"]);
-                AnApplication.Resume = DB.DataTable.Rows[Index]["Resume"] as string;
-
-                mApplicationList.Add(AnApplication);
-                Index++;
-            }
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -142,6 +107,50 @@ namespace ClassLibrary
             }
 
             DB.Execute("dbo.jobApplication_update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@ApplicationId", mThisApplication.ApplicationId);
+            DB.Execute("dbo.jobApplication_delete");
+        }
+
+        public void ReportByPosition(string PositionApplied)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@PositionApplied", PositionApplied);
+            DB.Execute("dbo.jobApplication_filterByPosition");
+
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+
+            mApplicationList = new List<clsApplication>();
+
+            while (Index < RecordCount)
+            {
+                clsApplication application = new clsApplication();
+
+                application.ApplicationId = Convert.ToInt32(DB.DataTable.Rows[Index]["ApplicationId"]);
+                application.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                application.AdminId = Convert.ToInt32(DB.DataTable.Rows[Index]["AdminId"]);
+                application.ApplicantName = Convert.ToString(DB.DataTable.Rows[Index]["ApplicantName"]);
+                application.ContactNumber = Convert.ToString(DB.DataTable.Rows[Index]["ContactNumber"]);
+                application.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
+                application.PositionApplied = Convert.ToString(DB.DataTable.Rows[Index]["PositionApplied"]);
+                application.ApplicantName = Convert.ToString(DB.DataTable.Rows[Index]["ApplicantName"]);
+
+                mApplicationList.Add(application);
+                Index++;
+            }
         }
     }
 }

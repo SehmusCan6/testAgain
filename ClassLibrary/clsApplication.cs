@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace ClassLibrary
 {
@@ -130,6 +131,22 @@ namespace ClassLibrary
             }
 
             return Error;
+        }
+
+        public DataTable StatisticsGroupedByPosition()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.Execute("dbo.jobApplication_count_GroupByPosition");
+            return DB.DataTable;
+        }
+
+        public DataTable StatisticsGroupedByStaffId()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.Execute("dbo.jobApplication_count_GroupStaffId");
+            return DB.DataTable;
         }
     }
 }

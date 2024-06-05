@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Data;
 using System.IO;
 using System.Net.Mail;
 
@@ -10,11 +11,11 @@ namespace Testing4
     public class tstApplication
     {
         int staffID = 2;
-        string name = "John Smith";
-        string contactNo = "+4476536212";
+        string name = "NameTest";
+        string contactNo = "ContactTest";
         string email = "example@test.com";
-        string position = "doctor";
-        string resume = "localhost/public/saved/resume.pdf";
+        string position = "PositionTest";
+        string resume = null;
 
         [TestMethod]
         public void instanceConstructorOk()
@@ -666,5 +667,25 @@ namespace Testing4
         }
 
 
+        [TestMethod]
+        public void StatStatisticsGroupedByPosition()
+        {
+            clsApplication jobApp = new clsApplication();
+            DataTable dT = jobApp.StatisticsGroupedByPosition();
+            int noOfRecord = 7;
+
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByStaffId()
+        {
+            clsApplication jobApp = new clsApplication();
+            DataTable dT = jobApp.StatisticsGroupedByStaffId();
+            int noOfRecord = 2;
+
+            Assert.AreEqual(noOfRecord , dT.Rows.Count);
+            
+        }
     }
 }

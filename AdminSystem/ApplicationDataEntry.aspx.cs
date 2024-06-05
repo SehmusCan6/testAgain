@@ -21,42 +21,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
         }
     }
-    /*
-    protected void SubmitButtonId_Click(object sender, EventArgs e)
-    {
-        clsApplication Application = new clsApplication();
-
-        int staffId = 0;
-        int.TryParse(Request.Form["txtStaffId"], out staffId);
-        string fullName = String.Format("{0}", Request.Form["txtFullName"]);
-        string contactNumber = String.Format("{0}", Request.Form["txtPhone"]);
-        string positionApplied = String.Format("{0}", Request.Form["txtPosition"]);
-        string emailAddress = String.Format("{0}", Request.Form["txtEmail"]);
-        string resume = String.Format("{0}", Request.Form["txtResume"]);
-
-        if (staffId != 0)
-        {
-            Application.StaffId = staffId;
-        }
-
-        Application.ApplicantName = fullName;
-        Application.ContactNumber = contactNumber;
-        Application.PositionApplied = positionApplied;
-        Application.EmailAddress = emailAddress;
-        if (resume != null)
-        {
-            Application.Resume = resume;
-        }
-        else
-        {
-            Application.Resume = null;
-        }
-
-        Session["Application"] = Application;
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Application submittion was successful!')", true);
-        Response.Redirect("ApplicationViewer.aspx");
-    }
-    */
 
     protected void SubmitButtonId_Click(object sender, EventArgs e)
     {
@@ -120,12 +84,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     void DisplayApp()
     {
         clsApplicationCollection apps = new clsApplicationCollection();
-        apps.ThisApplication.Find(ApplicationId);
-        txtStaffId.Value = apps.ThisApplication.StaffId.ToString();
-        txtFullName.Value = apps.ThisApplication.ApplicantName.ToString();
-        txtPhone.Value = apps.ThisApplication.ContactNumber.ToString();
-        txtEmail.Value = apps.ThisApplication.EmailAddress;
-        txtResume.Value = apps.ThisApplication.Resume ?? string.Empty;
+        bool found = apps.ThisApplication.Find(ApplicationId);
+
+        if (found && apps.ThisApplication != null)
+        {
+            txtStaffId.Value = apps.ThisApplication.StaffId.ToString();
+            txtFullName.Value = apps.ThisApplication.ApplicantName.ToString();
+            txtPhone.Value = apps.ThisApplication.ContactNumber.ToString();
+            txtEmail.Value = apps.ThisApplication.EmailAddress;
+            txtResume.Value = apps.ThisApplication.Resume ?? string.Empty;
+        }
     }
 
     protected void CancelButtonId_Click(object sender, EventArgs e)

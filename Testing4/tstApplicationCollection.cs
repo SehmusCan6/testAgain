@@ -141,5 +141,81 @@ namespace Testing4
             Assert.AreEqual(apps.ThisApplication, TestItem);
         }
 
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsApplicationCollection apps = new clsApplicationCollection();
+            clsApplication TestItem = new clsApplication();
+            Int32 PrimaryKey = 0;
+
+            TestItem.StaffId = 2;
+            TestItem.AdminId = 1;
+            TestItem.ApplicantName = "TestDelete";
+            TestItem.ContactNumber = "TestDelete";
+            TestItem.EmailAddress = "TestDelete";
+            TestItem.PositionApplied = "TestDelete";
+            apps.ThisApplication = TestItem;
+
+            PrimaryKey = apps.Add();
+
+            TestItem.ApplicationId = PrimaryKey;
+
+            apps.ThisApplication.Find(PrimaryKey);
+            apps.Delete();
+
+            Boolean Found = apps.ThisApplication.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByPositionMethodOK()
+        {
+            clsApplicationCollection applications = new clsApplicationCollection();
+            clsApplicationCollection filteredApps = new clsApplicationCollection();
+
+            filteredApps.ReportByPosition("");
+
+            Assert.AreEqual(applications.Count, filteredApps.Count);
+        }
+
+        [TestMethod]
+        public void ReportByPositionNoneFound()
+        {
+            clsApplicationCollection FilteredApps = new clsApplicationCollection();
+            FilteredApps.ReportByPosition("astronaut");
+
+            Assert.AreEqual(0, FilteredApps.Count);
+        }
+
+        [TestMethod]
+        public void ReportByPositionTestDataFound()
+        {
+            clsApplicationCollection FilteredApps = new clsApplicationCollection();
+
+            Boolean OK = true;
+
+            FilteredApps.ReportByPosition("TestAdd2");
+
+            if (FilteredApps.Count == 2)
+            {
+                if (FilteredApps.ApplicationList[0].ApplicationId != 46)
+                {
+                    OK = false;
+                }
+
+                if (FilteredApps.ApplicationList[1].ApplicationId != 47)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);  
+        }
     }
 }

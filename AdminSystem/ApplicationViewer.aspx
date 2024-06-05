@@ -83,7 +83,7 @@
             </div>
             <div class="application-container">
                 <form runat="server" id="applicationForm">
-                    <asp:Button CssClass="BigApplyButton" ID="ApplyButtonId" runat="server" Text="Apply for a position" OnClick="ApplyButtonId_Click" BackColor="#33CC33" Font-Bold="True" Font-Size="Medium" ForeColor="White" Height="102px" Width="301px" BorderStyle="None" />
+                    <asp:Button CssClass="BigApplyButton" ID="ApplyButtonId" runat="server" Text="Apply for a position" OnClick="ApplyButtonId_Click" BackColor="#33CC33" Font-Bold="True" Font-Size="Medium" ForeColor="White" Height="124px" Width="301px" BorderStyle="None" />
                 </form>
             </div>
         </div>
